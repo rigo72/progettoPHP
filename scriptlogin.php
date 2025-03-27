@@ -4,8 +4,29 @@
 
 <?php
     session_start();
-    $_SESSION["username"] = $_POST["username"];
-    $_SESSION["password"] = $_POST["password"];
+    $username = $_POST["username"];
+    $pass = $_POST["pass"];
 
-    $sql = "SELECT U.username FROM utente U WHERE U.username = $_SESSION["username"]";
+    $sql = "SELECT U.username, U.pass FROM utente U WHERE U.username = '$username'";
+    $result = $conn->query($sql);
+    if($result -> num_rows > 0){
+        $row = $result -> fetch_assoc();
+        $usernameDB = $row["username"];
+        if($usernameDB == $username){
+            $passDB = $row["pass"];
+            var_dump($passDB);
+            var_dump($usernameDB);
+            if($passDB == $pass){
+                $_SESSION["userLog"] = true;
+                $_SESSION["username"] = $username;
+                header('Location: benvenuto.php');
+            }else{
+                header('Location: errore_loginreg.php');
+                $_SESSION["messaggioErrore"] = "Password sbagliata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            }
+        }else{
+            header('Location: errore_loginreg.php');
+            $_SESSION["messaggioErrore"] = "Username sbagliata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+        }
+    }
 ?>
