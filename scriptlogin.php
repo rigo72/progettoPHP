@@ -14,19 +14,17 @@
         $usernameDB = $row["username"];
         if($usernameDB == $username){
             $passDB = $row["pass"];
-            var_dump($passDB);
-            var_dump($usernameDB);
             if($passDB == $pass){
                 $_SESSION["userLog"] = true;
-                $_SESSION["username"] = $username;
+                $_SESSION["username"] = $username; 
                 header('Location: benvenuto.php');
             }else{
                 header('Location: errore_loginreg.php');
-                $_SESSION["messaggioErrore"] = "Password sbagliata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+                $_SESSION["messaggioErrore"] = "Password sbagliata!!";
             }
         }else{
             header('Location: errore_loginreg.php');
-            $_SESSION["messaggioErrore"] = "Username sbagliata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            $_SESSION["messaggioErrore"] = "Username sbagliata!!";
         }
     }
 ?>
