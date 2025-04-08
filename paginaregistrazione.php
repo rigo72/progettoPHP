@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-<!-- From Uiverse.io by ammarsaa --> 
 <form class="form" method="post" action="scriptregistrazione.php">
     <p class="title">Register </p>
     <p class="message">Signup now and get full access to our app. </p>
@@ -37,7 +36,7 @@
         <span>Password</span>
     </label>
     <button class="submit">Submit</button>
-    <p class="signin">Hai gia un account ? <a href="paginalogin.html">Login</a> </p>
+    <p class="signin">Hai gia un account ? <a href="paginalogin.php">Login</a> </p>
 </form>
 </body>
 </html>

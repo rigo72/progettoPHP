@@ -9,22 +9,22 @@
 
     $sql = "SELECT U.username, U.pass FROM utente U WHERE U.username = '$username'";
     $result = $conn->query($sql);
+    var_dump($result);  
     if($result -> num_rows > 0){
         $row = $result -> fetch_assoc();
         $usernameDB = $row["username"];
-        if($usernameDB == $username){
             $passDB = $row["pass"];
-            if($passDB == $pass){
+            $passCriptata = hash("sha256", $pass);
+            if($passDB == $passCriptata){
                 $_SESSION["userLog"] = true;
                 $_SESSION["username"] = $username; 
                 header('Location: benvenuto.php');
             }else{
-                header('Location: errore_loginreg.php');
-                $_SESSION["messaggioErrore"] = "Password sbagliata!!";
+                $_SESSION["errore"] = "pass";
+                header('Location: paginalogin.php');
             }
-        }else{
-            header('Location: errore_loginreg.php');
-            $_SESSION["messaggioErrore"] = "Username sbagliata!!";
-        }
+    }else{
+        $_SESSION["errore"] = "user";
+        header('Location: paginalogin.php');
     }
 ?>
