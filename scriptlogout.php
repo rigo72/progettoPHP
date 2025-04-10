@@ -12,6 +12,6 @@
     ?>
     <h1>Logout Effettuato</h1>
     <br>
-    <a href="./paginalogin.html">Torna al login</a>
+    <a href="./paginalogin.php">Torna al login</a>
 </body>
 </html>

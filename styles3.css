@@ -1,3 +1,15 @@
 #contenitore{
     margin: auto;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#benvenuto{
+    text-align: center;
+}
+#datiUtente{
+    text-align:justify;
+    padding-left: 850px;
+}
+#numeroRece{
+    
 }
