@@ -1,5 +1,5 @@
 #contenitore{
-    margin: auto;
+    margin:0 auto;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -10,6 +10,9 @@
     text-align:justify;
     padding-left: 850px;
 }
+#tabella{
+    margin: 0 auto;
+}
 #numeroRece{
-    
+    margin: 0 auto;
 }
