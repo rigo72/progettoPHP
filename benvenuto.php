@@ -17,13 +17,16 @@
                 header('Location: errore_loginreg.php');
                 $_SESSION["messaggioErrore"] = "Sessione scaduta!"; 
             }
+            if(!isset($_SESSION["inserimento"])) {
+                $_SESSION["inserimento"] = false;
+            }
         ?>
     </div>
     <div id="contenitore">
         <div id="datiUtente">
             <?php
                 $us = $_SESSION["username"];
-                $sql = "SELECT U.username, U.nome, U.cognome, U.email, U.dataregistrazione FROM utente U WHERE U.username = '$us'";
+                $sql = "SELECT U.ID_Utente, U.username, U.nome, U.cognome, U.email, U.dataregistrazione FROM utente U WHERE U.username = '$us'";
                 $result = $conn -> query($sql);
                 if($result-> num_rows > 0){
                     while($row = $result->fetch_assoc()){
@@ -32,6 +35,7 @@
                             Cognome: {$row["cognome"]}<br>
                             Email: {$row["email"]}<br>
                             Data Registrazione: {$row["dataregistrazione"]}<br>";
+                            $_SESSION["id"] = $row["ID_Utente"];
                     }
                 }
             ?>
@@ -75,14 +79,33 @@
                 ?>
             </table>
         </div>
-        <div>
-            <form action="inseriscirecensione.php" method="post">
-                    
+        <div class = "insert">
+            <form action="inserimentoRecensione.php" method="post">
+                    <?php
+                        echo "<select name = 'ristorante'>";
+                        $sql = "SELECT R.nome, R.codiceristorante FROM ristorante R";
+                        $result = $conn -> query($sql);
+                        if($result -> num_rows > 0){
+                            while($row = $result -> fetch_assoc()){
+                                echo "<option value = ' ". $row["codiceristorante"] ." '>". $row["nome"]. " </option> <br>";
+                            }
+                        }
+                        echo "<input type = 'number' name = 'recensione'  min='1' max= '5'>"
+                    ?>
+                    <br>
+                    <input type="submit">
             </form>
         </div>
         <br>
-        <a href="./paginalogin.html">Torna al login</a>
-        <br>
+        <div>
+            <?php
+                if($_SESSION["inserimento"] == true){
+                        echo "Recensione inserita con successo";
+                    }else{
+                        echo "Impossibile aggiungere la recensione";
+                }
+            ?>
+        </div>
         <a href="./scriptlogout.php">Effettua il logout</a>
 </body>
 </html>
