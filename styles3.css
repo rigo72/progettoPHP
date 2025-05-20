@@ -1,22 +1,123 @@
-#contenitore{
-    margin:0 auto;
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-#benvenuto{
-    text-align: center;
-}
-#datiUtente{
-    text-align:justify;
-    padding-left: 850px;
-}
-#tabella{
-    margin: 0 auto;
-}
-#numeroRece{
-    margin: 100px;
+/* Generali */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-.insert{
-    margin-top: 123px;
+h1, p, td {
+    margin: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container Principale */
+#contenitore {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Benvenuto */
+#benvenuto {
+    font-size: 24px;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Dati Utente */
+#datiUtente {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #2196F3;
+}
+
+#datiUtente p {
+    margin: 5px 0;
+}
+
+/* Numero Recensioni */
+#numeroRece {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Tabella Recensioni */
+#tabella {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#tabella td, #tabella th {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#tabella th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#tabella tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Inserimento Recensione */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form select, form input[type="radio"] {
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    #contenitore {
+        width: 95%;
+    }
+
+    #benvenuto {
+        font-size: 20px;
+    }
+
+    #tabella td, #tabella th {
+        padding: 10px;
+    }
 }

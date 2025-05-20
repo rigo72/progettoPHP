@@ -56,7 +56,7 @@
             <table id="tabella">
                 <tr>
                     <td>Nome</td>
-                    <td>indirizzo</td>
+                    <td>Indirizzo</td>
                     <td>Citta</td>
                     <td>Voto</td>
                     <td>Data</td>
@@ -79,33 +79,39 @@
                 ?>
             </table>
         </div>
-        <div class = "insert">
-            <form action="inserimentoRecensione.php" method="post">
-                    <?php
-                        echo "<select name = 'ristorante'>";
-                        $sql = "SELECT R.nome, R.codiceristorante FROM ristorante R";
-                        $result = $conn -> query($sql);
-                        if($result -> num_rows > 0){
-                            while($row = $result -> fetch_assoc()){
-                                echo "<option value = ' ". $row["codiceristorante"] ." '>". $row["nome"]. " </option> <br>";
-                            }
-                        }
-                        echo "<input type = 'number' name = 'recensione'  min='1' max= '5'>"
-                    ?>
-                    <br>
-                    <input type="submit">
-            </form>
-        </div>
         <br>
         <div>
+            <form action="inserimentoRecensione.php" method="post">
+                <select name="ristorante" id="ristorante">
+                    <?php
+                        $sql = "SELECT RI.nome FROM ristorante RI";
+                        $result = $conn -> query($sql);
+                        if($result->num_rows > 0){
+                            while($row = $result -> fetch_assoc()){
+                                echo "<option value='{$row["nome"]}'>{$row["nome"]}</option>";
+                            }
+                        }
+                    ?>
+                </select>
+                <br>
+                <input type="radio" name="recensione" value="1" id="1"> 1
+                <input type="radio" name="recensione" value="2" id="2"> 2
+                <input type="radio" name="recensione" value="3" id="3"> 3
+                <input type="radio" name="recensione" value="4" id="4"> 4
+                <input type="radio" name="recensione" value="5" id="5"> 5
+                <br>
+                <input type="submit" value="Inserisci">
+            </form>
+
             <?php
-                if($_SESSION["inserimento"] == true){
-                        echo "Recensione inserita con successo";
-                    }else{
-                        echo "Impossibile aggiungere la recensione";
+                if(isset($_SESSION["esito"])){
+                    echo $_SESSION["esito"];
+                    unset($_SESSION["esito"]);
                 }
             ?>
+
         </div>
         <a href="./scriptlogout.php">Effettua il logout</a>
 </body>
 </html>
+
