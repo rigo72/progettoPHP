@@ -11,8 +11,12 @@
         <?php
             include ("connessione.php");
             session_start();
+
             if($_SESSION["userLog"] == true){
                 echo "<h1 id='benvenuto'>Benvenuto {$_SESSION["username"]}</h1>";
+                if($_SESSION["admin"] == 1){
+                    header('Location: pannelloadmin.php');
+                }
             }else{
                 header('Location: errore_loginreg.php');
                 $_SESSION["messaggioErrore"] = "Sessione scaduta!"; 
