@@ -113,9 +113,24 @@
                     unset($_SESSION["esito"]);
                 }
             ?>
-
-        </div>
-        <a href="./scriptlogout.php">Effettua il logout</a>
+</div>
+<div>
+    <p>Informazioni ristorante</p>
+    <form action="informazioniristorante.php" method="post">
+                <select name="info" id="ristorante">
+                    <?php
+                        $sql = "SELECT RI.nome FROM ristorante RI";
+                        $result = $conn -> query($sql);
+                        if($result->num_rows > 0){
+                            while($row = $result -> fetch_assoc()){
+                                echo "<option value='{$row["nome"]}'>{$row["nome"]}</option>";
+                            }
+                        }
+                    ?>
+                <input type="submit" value="Ottieni Informazioni">
+    </form>
+    <a href="./scriptlogout.php">Effettua il logout</a>
+</div>
 </body>
 </html>
 

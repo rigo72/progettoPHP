@@ -19,17 +19,18 @@
             <td>Indirizzo</td>
             <td>Citta</td>
             <td>Numero Recensioni</td>
+            <td>Codice Ristorante</td>
         </tr>
         <?php
-            $sql = "SELECT R.nome, R.indirizzo, R.citta, COUNT(*) AS numeroRecensioni
-                    FROM recensione RC
-                    JOIN ristorante R 
+            $sql = "SELECT R.codiceristorante, R.nome, R.indirizzo, R.citta, COUNT(RC.idrecensione) AS numeroRecensioni
+                    FROM ristorante R
+                    LEFT JOIN recensione RC
                     ON RC.codiceristorante = R.codiceristorante
-                    GROUP BY R.nome, R.indirizzo, R.citta";
+                    GROUP BY R.codiceristorante";
             $result = $conn -> query($sql);
             if($result -> num_rows > 0){
                 while($row = $result -> fetch_assoc()){
-                    echo"<tr><td>". $row["nome"] . "</td><td>" . $row["indirizzo"] . "</td><td>" . $row["citta"] . "</td><td>" . $row["numeroRecensioni"] . "</td></tr>";
+                    echo"<tr><td>" . $row["nome"] . "</td><td>" . $row["indirizzo"] . "</td><td>" . $row["citta"] . "</td><td>" . $row["numeroRecensioni"] . "</td><td>" . $row["codiceristorante"] . "</td></tr>";
                 }
             }
 
@@ -38,6 +39,8 @@
 </div>
 <div>
     <form action="inserimentoristorante.php" method="POST">
+            Inserisci il codice del ristorante <br>
+            <input type="text" name="codice"> <br>
             Inserisci il nome del ristorante <br>
             <input type="text" name="ristorante"> <br>
             Inserisci l'indirizzo <br>
@@ -54,3 +57,4 @@
         }
     ?>
 </div>
+<a href="./scriptlogout.php">Effettua il logout</a>
